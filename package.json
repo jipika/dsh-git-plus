@@ -1,0 +1,32 @@
+{
+	"name": "dsh-git-tab",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "会话「Git」标签页：动态显隐的仓库操作控制台 —— 状态浏览、文件 diff、stage/unstage/discard、commit/amend、历史提交、分支切换/新建、fetch/pull/push。",
+	"license": "MIT",
+	"main": "./lib/index.js",
+	"exports": {
+		".": "./lib/index.js",
+		"./client": "./lib/client.js",
+		"./package.json": "./package.json"
+	},
+	"dsh": {
+		"client": {
+			"platform": "web",
+			"immediately": true
+		}
+	},
+	"meta": {
+		"title": "Git 标签页",
+		"description": "在会话头部标签行新增「Git」tab（当前目录有 .git 才出现）：完整仓库操作控制台。"
+	},
+	"files": [
+		"lib/index.js",
+		"lib/client.js",
+		"README.md"
+	],
+	"engines": {
+		"node": "^22.19.0 || >=24.0.0"
+	}
+}
