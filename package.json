@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",
-	"description": "会话「Git」标签页：动态显隐的仓库操作控制台 —— 状态浏览、文件 diff、stage/unstage/discard、commit/amend、历史提交、分支切换/新建、fetch/pull/push。",
+	"description": "会话「Git」标签页：双栏仓库操作控制台（GitHub Desktop / Fork 形态）—— 左栏分支+提交时间轴（可搜索），右栏工作区改动（stage/commit/diff）或 commit 详情（内联 diff）。",
 	"license": "MIT",
 	"main": "./lib/index.js",
 	"exports": {

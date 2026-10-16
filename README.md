@@ -4,15 +4,15 @@
 
 ## 功能
 
-**变更页**：Staged / Changes / 未跟踪三段文件列表，每行状态点 + 增删行数 + 操作菜单（stage / unstage / 丢弃 / 查看 diff）；行内展开 diff（Unified / Split 切换，Shiki 语法高亮）；底部 commit 栏（消息 + amend 勾选）。
+**双栏布局**（GitHub Desktop / Fork 形态）：左栏 260px —— 仓库 chip + 分支 chip、提交搜索框、分支 section（当前分支高亮、点击即切换、底部新建分支）、提交记录时间轴（「工作区改动」固定节点带脏计数 + 日期分组 + 头像 + subject + 作者·相对时间 + sha）；右栏随左栏选中切换两种视图。
 
-**历史页**：最近 50 条提交，点提交展开逐文件 diff，一键复制 sha。
+**工作区视图**：头部（工作区改动 + 计数 + fetch/pull/push 图标组，无远程时禁用并提示）；Staged / Changes / 未跟踪分段（空段隐藏；摘要行右侧「全部暂存」）；行 = 复选框 | 状态徽标 | 文件图标 | 主名+目录 | ±统计 | ⋯菜单；点行开 diff 覆盖面板（推入/推出同路）；底部 composer 卡（消息 + 生成提交信息 + amend + 提交）。
 
-**分支页**：本地分支列表（当前分支 + upstream + ahead/behind）、一键切换、新建分支；头部 Fetch / Pull / Push。
+**commit 详情视图**：头像 + subject + 完整/相对时间 + sha 复制芯片 + body 正文；文件列表卡（点击内联展开该文件 diff）；composer 隐藏。
 
 ## 动态显隐机制
 
-- client 半边在 `conversation.session.header.corner` 挂隐形 Probe（渲染 null 不占位），探测当前会话 cwd 是否 git 仓库。
+- client 半边在 `conversation.session.header.utilities`（list slot）挂隐形 Probe（渲染 null 不占位），探测当前会话 cwd 是否 git 仓库。⚠️ 勿挂 single slot：single 只渲染最低 priority 条目，Probe 会永不执行。
 - 官方 `slots.inject` 的「等声明」语义保证时序（slot 未声明时不执行、声明后自动 reconcile）。
 - 未注册态 5s 轮询 → `git init` 后 ≤5s tab 自动出现；非仓库会话 tab 摘除。
 - cwd 由 **host 侧** sessions / sessionQuery 服务解析（`header.cwd`，照 dsh-video-preview 的 `sessionCwdOf` 三级回退）—— client 不依赖 snapshot 形状。
@@ -22,7 +22,7 @@
 ```
 ~/.dsh/local-plugins/dsh-git-tab/
 ├── lib/index.js   host 半边：/dsh-git-tab 前缀路由（GET 只读 + POST /action 白名单）
-└── lib/client.js  client 半边：tab 注册 + 显隐 Probe + 三页签 UI
+└── lib/client.js  client 半边：tab 注册 + 显隐 Probe + 双栏 UI
 ```
 
 host 路由：
@@ -50,3 +50,4 @@ node /tmp/dsh-git-tab-host-test.mjs   # 55 项：解析器 + scratch 仓库全�
 ## 回滚
 
 删除 desktop profile `cordis.patch.yml` 里的 `dsh-git-tab` insert 块 + `package.json` 依赖行，重启应用。
+test-change
