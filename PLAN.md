@@ -1,4 +1,4 @@
-# dsh-git-tab 方案（v2 · 完整 git 操作控制 · 供审阅）
+# dsh-git-plus 方案（v2 · 完整 git 操作控制 · 供审阅）
 
 > v2 变更：从「只读 diff 查看器」升级为**完整 git 操作控制台**。v1 的前提表、显隐机制、diff 渲染结论全部保留（见文末附录），本版新增操作面。
 
@@ -48,7 +48,7 @@
 
 ## 操作面（POST 动词路由，白名单表）
 
-host 路由：`GET /dsh-git-tab/{health,git-info,status,file-diff,log,show-diff,branch-list}` + `POST /dsh-git-tab/action`。
+host 路由：`GET /dsh-git-plus/{health,git-info,status,file-diff,log,show-diff,branch-list}` + `POST /dsh-git-plus/action`。
 
 | action | git 命令 | 参数 | 危险级 |
 | --- | --- | --- | --- |

@@ -1,4 +1,4 @@
-// dsh-git-tab 真实组件预览 —— 在浏览器里跑 lib/client.js 的真实 factory
+// dsh-git-plus 真实组件预览 —— 在浏览器里跑 lib/client.js 的真实 factory
 // （mock __ModuleLoader__/ctx.slots/ctx.locale/fetch），DOM 结构、installStyle 注入的 CSS、
 // 文件行/分组卡/toolbar/composer 全部是产出级真值。改 client.js 后 1.2s 自动刷新。
 //   node preview-server.mjs  →  http://127.0.0.1:4170/?theme=light|dark

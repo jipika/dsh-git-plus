@@ -1,4 +1,4 @@
-# dsh-git-tab
+# dsh-git-plus
 
 会话详情页的「Git」tab —— 当前会话工作目录是 git 仓库时自动出现（`git init` 后 ≤5s），提供完整仓库操作控制台。
 
@@ -20,8 +20,8 @@
 ## 架构
 
 ```
-~/.dsh/local-plugins/dsh-git-tab/
-├── lib/index.js   host 半边：/dsh-git-tab 前缀路由（GET 只读 + POST /action 白名单）
+~/.dsh/local-plugins/dsh-git-plus/
+├── lib/index.js   host 半边：/dsh-git-plus 前缀路由（GET 只读 + POST /action 白名单）
 └── lib/client.js  client 半边：tab 注册 + 显隐 Probe + 双栏 UI
 ```
 
@@ -44,10 +44,10 @@ POST /action   {action: stage|stage-all|unstage|unstage-all|discard|commit|
 ## 测试
 
 ```bash
-node /tmp/dsh-git-tab-host-test.mjs   # 55 项：解析器 + scratch 仓库全回路 + 注入/逃逸/空仓库
+node /tmp/dsh-git-plus-host-test.mjs   # 55 项：解析器 + scratch 仓库全回路 + 注入/逃逸/空仓库
 ```
 
 ## 回滚
 
-删除 desktop profile `cordis.patch.yml` 里的 `dsh-git-tab` insert 块 + `package.json` 依赖行，重启应用。
+删除 desktop profile `cordis.patch.yml` 里的 `dsh-git-plus` insert 块 + `package.json` 依赖行，重启应用。
 test-change
