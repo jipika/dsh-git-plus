@@ -4,12 +4,7 @@
 
 ## 📸 界面预览
 
-<table width="100%">
-  <tr>
-    <td width="50%"><img src="screenshots/panel-branches.png" width="100%" /><br><p align="center">双栏总览 —— 左栏分支列表 + 提交时间轴，右栏工作区改动</p></td>
-    <td width="50%"><img src="screenshots/panel-dropdown-selectall.png" width="100%" /><br><p align="center">新版 —— 顶部下拉切换分支 + 分组全选勾选框 + 右上悬停提示</p></td>
-  </tr>
-</table>
+<img src="screenshots/panel-dropdown-selectall.png" width="100%" />
 
 ## 功能
 
