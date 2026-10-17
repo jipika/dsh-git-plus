@@ -2,11 +2,20 @@
 
 会话详情页的「Git」tab —— 当前会话工作目录是 git 仓库时自动出现（`git init` 后 ≤5s），提供完整仓库操作控制台。
 
+## 📸 界面预览
+
+<table width="100%">
+  <tr>
+    <td width="50%"><img src="screenshots/panel-branches.png" width="100%" /><br><p align="center">双栏总览 —— 左栏分支列表 + 提交时间轴，右栏工作区改动</p></td>
+    <td width="50%"><img src="screenshots/panel-dropdown-selectall.png" width="100%" /><br><p align="center">新版 —— 顶部下拉切换分支 + 分组全选勾选框 + 右上悬停提示</p></td>
+  </tr>
+</table>
+
 ## 功能
 
-**双栏布局**（GitHub Desktop / Fork 形态）：左栏 260px —— 仓库 chip + 分支 chip、提交搜索框、分支 section（当前分支高亮、点击即切换、底部新建分支）、提交记录时间轴（「工作区改动」固定节点带脏计数 + 日期分组 + 头像 + subject + 作者·相对时间 + sha）；右栏随左栏选中切换两种视图。
+**双栏布局**（GitHub Desktop / Fork 形态）：左栏 260px —— 仓库 chip + 分支下拉 chip（点击下拉切换全部分支，当前分支打勾选中，下拉底部可新建分支）、提交搜索框、提交记录时间轴（「工作区改动」固定节点带脏计数 + 日期分组 + 头像 + subject + 作者·相对时间 + sha）；右栏随左栏选中切换两种视图。
 
-**工作区视图**：头部（工作区改动 + 计数 + fetch/pull/push 图标组，无远程时禁用并提示）；Staged / Changes / 未跟踪分段（空段隐藏；摘要行右侧「全部暂存」）；行 = 复选框 | 状态徽标 | 文件图标 | 主名+目录 | ±统计 | ⋯菜单；点行开 diff 覆盖面板（推入/推出同路）；底部 composer 卡（消息 + 生成提交信息 + amend + 提交）。
+**工作区视图**：头部（工作区改动 + 计数 + fetch/pull/push 图标组，悬停有文字提示，禁用态也能看，无远程时禁用并提示原因）；Staged / Changes / 未跟踪分段（空段隐藏；各分段标题前有全选勾选框，一键整组暂存/取消暂存；摘要行右侧「全部暂存」）；行 = 复选框 | 状态徽标 | 文件图标 | 主名+目录 | ±统计 | ⋯菜单；点行开 diff 覆盖面板（推入/推出同路）；底部 composer 卡（消息 + 生成提交信息 + amend + 提交）。
 
 **commit 详情视图**：头像 + subject + 完整/相对时间 + sha 复制芯片 + body 正文；文件列表卡（点击内联展开该文件 diff）；composer 隐藏。
 
@@ -50,4 +59,21 @@ node /tmp/dsh-git-plus-host-test.mjs   # 55 项：解析器 + scratch 仓库全�
 ## 回滚
 
 删除 desktop profile `cordis.patch.yml` 里的 `dsh-git-plus` insert 块 + `package.json` 依赖行，重启应用。
+
+---
+
+## ☕ 支持开源
+
+dsh-git-plus 是一个**完全免费、开源**的个人项目。开发和维护一个 DSH 插件需要投入大量业余时间——从交互设计到功能实现，从 Bug 修复到 DSH 版本适配，每一个版本背后都是持续的投入。
+
+如果你觉得它对你有帮助，欢迎通过以下方式支持项目的持续发展：
+
+<p align="center">
+  <img src="reward.jpg" width="280" alt="微信赞赏码" />
+  <img src="afdian_reward.jpg" width="280" alt="爱发电赞助码" />
+</p>
+
+当然，**给项目点个 Star ⭐️** 同样是对开发者最大的鼓励！
+
+每一份支持都是我继续维护和迭代的动力。感谢使用 💜
 test-change
