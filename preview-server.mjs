@@ -94,7 +94,7 @@ body[data-theme="dark"]{background:#0b0c0e}
 .frame{width:780px;height:620px;margin:24px auto 30px;border-radius:14px;overflow:hidden;box-shadow:0 14px 44px rgba(0,0,0,.28);background:var(--dsw-alias-bg-base)}
 .err{color:#c00;padding:16px;white-space:pre-wrap;font:12px/1.5 ui-monospace,monospace;max-width:780px;margin:0 auto}
 </style></head><body>
-<div class="frame"><div id="app" style="height:620px;overflow-y:auto"></div></div>
+<div class="frame"><div id="app" style="height:620px;overflow-y:auto;display:flex;flex-direction:column"><div id="mount" style="display:flex;flex-direction:column;flex:1 0 auto;min-height:0"></div><div data-composer-seat style="flex:none;height:152px;background:rgba(0,0,0,.25);color:#888;display:flex;align-items:center;justify-content:center;font:13px/1.4 sans-serif">composer seat mock · 152px</div></div></div>
 <div id="err" class="err"></div>
 <script type="module">
 const params = new URLSearchParams(location.search);
@@ -208,7 +208,7 @@ window.__ModuleLoader__ = {
     if (!window.__GitView) { document.getElementById("err").textContent += "GitView not registered\\n"; return; }
     const kids = [h(window.__GitView, { t: window.__gitT || ((k) => k), sessionId: "s1" })];
     if (window.__Probe) kids.push(h(window.__Probe, { sessionId: "s1" }));
-    ReactDOM.createRoot(document.getElementById("app")).render(h(React.Fragment, null, ...kids));
+    ReactDOM.createRoot(document.getElementById("mount")).render(h(React.Fragment, null, ...kids));
   }, 150);
 })();
 
