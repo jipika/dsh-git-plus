@@ -1,31 +1,32 @@
 {
-	"name": "@jipika/dsh-git-plus",
-	"version": "0.3.0",
-	"type": "module",
-	"description": "会话「Git」面板：双栏仓库操作控制台（GitHub Desktop / Fork 形态）—— 左栏分支+提交时间轴（可搜索），右栏工作区改动（stage/commit/diff）或 commit 详情（内联 diff）与真实作者头像。支持多仓库工作区（cwd 自身不是仓库、子目录才是仓库时按仓库切换）。",
-	"license": "MIT",
-	"main": "./lib/index.js",
-	"exports": {
-		".": "./lib/index.js",
-		"./client": "./lib/client.js",
-		"./package.json": "./package.json"
-	},
-	"dsh": {
-		"client": {
-			"platform": "web",
-			"immediately": true
-		}
-	},
-	"meta": {
-		"title": "Git Plus",
-		"description": "在会话头部标签行新增「Git」tab（当前目录有 .git 或子目录有仓库时出现）：双栏仓库操作控制台，多仓库工作区可切换。"
-	},
-	"files": [
-		"lib/index.js",
-		"lib/client.js",
-		"README.md"
-	],
-	"engines": {
-		"node": "^22.19.0 || >=24.0.0"
-	}
+  "name": "@jipika/dsh-git-plus",
+  "version": "0.3.0",
+  "type": "module",
+  "description": "会话「Git」面板：双栏仓库操作控制台（GitHub Desktop / Fork 形态）—— 左栏分支+提交时间轴（可搜索），右栏工作区改动（stage/commit/diff）或 commit 详情（内联 diff）与真实作者头像。支持多仓库工作区（cwd 自身不是仓库、子目录才是仓库时按仓库切换）。",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "meta": {
+    "title": "Git Plus",
+    "description": "在会话头部标签行新增「Git」tab（当前目录有 .git 或子目录有仓库时出现）：双栏仓库操作控制台，多仓库工作区可切换。"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "README.md",
+    "assets/"
+  ],
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  }
 }
