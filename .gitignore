@@ -1,3 +1,7 @@
-vendor/
-*.bak-*
+node_modules/
+*.log
 .DS_Store
+*.tgz
+.backups/
+**/*.bak*
+*.bak*
