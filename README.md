@@ -22,6 +22,18 @@
 
 **commit 详情视图**：头像 + subject + 完整/相对时间 + sha 复制芯片 + body 正文；文件列表卡（点击内联展开该文件 diff）；composer 隐藏。
 
+## 窄屏 / H5（≤1023px，与 dsh-pocket 断点同档）
+
+形态是**单栏 + 面板切换**，不是上下堆叠（旧版把左栏压到 40vh、右栏吃剩余，两边都只剩半截、工作区改动完全看不到）：
+
+- `.dgt-cols` 在窄屏加 `dgt-narrow` 类，靠 `data-pane`（`main` / `side`）只显示一栏；默认 `main`（工作区改动 + 提交框首屏）
+- 主区标题行左侧是「‹」返回按钮 → 回提交记录；commit 详情视图（无标题行）单独渲染一条返回条。桌面端两者都 `display:none`
+- 点左栏任一提交 / 点文件行都会自动切到 `main`（diff 面板 absolute 覆盖在 `.dgt-main` 内，否则「点了没反应」）
+- 触控尺寸：勾选框保持 16px 视觉（旧规则把 `min-width:44px` 套到 checkbox 上，H5 上是一个个空大方框），命中区交给 40px 行高；`miniBtn` / `kebab` / `iconBtn` 32–36px
+- 输入类控件字号 16px（iOS 聚焦不自动缩放），提交卡窄屏换行、提交按钮贴右，footer 补 `safe-area-inset-bottom`
+- 分支 / 仓库下拉改 `portal`：in-place absolute 会被 `.dgt-cols` 的 `overflow:hidden` 裁掉
+- 断点用 `matchMedia`（`useNarrow`）订阅，横竖屏切换 / 桌面拖窄实时换形态
+
 ## 动态显隐机制
 
 - client 半边在 `conversation.session.header.utilities`（list slot）挂隐形 Probe（渲染 null 不占位），探测当前会话 cwd 是否 git 仓库。⚠️ 勿挂 single slot：single 只渲染最低 priority 条目，Probe 会永不执行。
