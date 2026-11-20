@@ -1,0 +1,4 @@
+# @jipika/dsh-git-plus — bundle 层：只插入基础行，配置由 profile 的 cordis.patch.yml 覆盖。
+- insert:
+    - id: dsh-git-plus
+      name: '@jipika/dsh-git-plus'

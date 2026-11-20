@@ -22,6 +22,25 @@
 
 **commit 详情视图**：头像 + subject + 完整/相对时间 + sha 复制芯片 + body 正文；文件列表卡（点击内联展开该文件 diff）；composer 隐藏。
 
+## 生成提交信息用哪个模型（设置 → 通用）
+
+「生成提交信息」默认自动挑第一个可用模型（provider 顺序 + 该 provider 的模型顺序）。要指定路由，用**设置 → 通用 → 「提交信息生成模型」**一行：
+
+- 两个下拉：供应商 / 模型；供应商选「自动（第一个可用）」= 回到自动。
+- 点「应用」即写盘，下一次点「生成提交信息」立刻走新路由，**改选择不用重启**（host 每次生成都现读）。这一行本身是 host 半边新增的路由，插件装好后需要重启一次 DeepSeek Harness 让宿主加载它；client 半边刷新页面即可。
+- 选择存 `<DSH_HOME>/state/dsh-git-plus/gen-model.json`（`{provider, model, updatedAt}`）；删掉该文件 = 回到自动。
+- 保存前会用 `llm.listModels(provider)` 校验该模型确实在目录里，写死一个不存在的 id 会被 400 拒绝。
+- 目录接口本身有 4s/provider 上限：某个网关卡住时，那一行只报「读不到模型清单」，不会让设置页一直转圈。
+
+接口（宿主半边，同 `ROUTE` 前缀）：
+
+```
+GET  /dsh-git-plus/gen-model   → { saved, savedValid, effective, providers[], failures[] }
+POST /dsh-git-plus/gen-model   → {provider, model}；provider 传空串 = 清除（回到自动）
+```
+
+实现要点：`genMessage` 里 `resolveGenModel()` 先读保存值、再确认它仍在 `listModels` 的目录里；保存的路由失效（provider 被删/模型下架）时**静默回落自动**，不会让生成直接失败。返回体多一个 `modelSource: "settings" | "auto"`，toast 里的模型名就是实际用的那条。
+
 ## 窄屏 / H5（≤1023px，与 dsh-pocket 断点同档）
 
 形态是**单栏 + 面板切换**，不是上下堆叠（旧版把左栏压到 40vh、右栏吃剩余，两边都只剩半截、工作区改动完全看不到）：
