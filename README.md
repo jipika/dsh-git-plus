@@ -41,6 +41,16 @@ POST /dsh-git-plus/gen-model   → {provider, model}；provider 传空串 = 清�
 
 实现要点：`genMessage` 里 `resolveGenModel()` 先读保存值、再确认它仍在 `listModels` 的目录里；保存的路由失效（provider 被删/模型下架）时**静默回落自动**，不会让生成直接失败。返回体多一个 `modelSource: "settings" | "auto"`，toast 里的模型名就是实际用的那条。
 
+## 提交信息规范：强制按 git-commit-emoji 技能（缺失走内置）
+
+生成的提交信息**必须**符合技能 `git-commit-emoji` 的规范（emoji + type 配对、中文、动词开头 ≤50 字、无 AI 署名等），不再是旧版那段只覆盖 10 个 type 的写死提示词：
+
+- **技能强制装载**：每次生成现读 `SKILL.md`（改技能下一次生成立即生效，无缓存）。查找顺序与 DSH skill-filesystem 一致：选中仓库根 `.dsh/skills` → `.agents/skills` → `<DSH_HOME>/skills` → `~/.agents/skills`（`DSH_AGENTS_HOME` 可改后者），取第一个命中。
+- **内置兜底**：技能文件缺失/不可读时用插件内置的完整规范副本（16 个 type 全量对照 + 全部硬规则），与技能同一套规则；生成照常工作。
+- **生成后强制校验**：先确定性修复（剥代码块围栏/前言、首行 emoji 按 type 补齐或换正、去简述尾句号、超长截到 50 字、正文空行规范），再过与 `git-commit-gate` 门禁同款的终检（type 白名单 / emoji 配对 / 简述中文与字数 / 首行 ≤120 字 / AI 署名）。修出来的信息能直接过门禁；修不动的（无结构、纯英文、含 AI 署名）保留文本但 `formatOk=false`，toast 列出问题清单。AI 署名整条判不合规，不做局部删改。
+- 返回体带 `specSource: "skill" | "builtin"`（技能命中时另带 `skillPath`）、`fixes[]`（本次自动修复项）、`problems[]`（终检未过项）；成功 toast 显示「完成 · provider/model · 技能/内置规范」。
+- diff 预算、敏感文件拒发、90s 超时、模型选择等原有行为不变。
+
 ## 窄屏 / H5（≤1023px，与 dsh-pocket 断点同档）
 
 形态是**单栏 + 面板切换**，不是上下堆叠（旧版把左栏压到 40vh、右栏吃剩余，两边都只剩半截、工作区改动完全看不到）：
